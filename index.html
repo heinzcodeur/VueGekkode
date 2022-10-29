@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueGekkode</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <div id="app">
+                <h1>{{ title }}</h1>
+                <div class="row">
+                    <div class="col-5">
+                        <img v-bind:src="image" alt="" v-show="inStock" class="img-responsive" width="276" height="309">
+                    </div>
+                    <div class="col-7">
+                        <p v-if="inventory > 10">En stock</p>
+                        <p v-else-if="inventory <= 10 && inventory > 0">Presque en rupture!</p>
+                        <p v-else>En rupture</p>
+                        <hr>
+                        <br>
+
+                        <!--div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image, variant.color)" :style="style"-->
+                        <div class="variants-wrapper">
+                            <div v-for="(variant, index)  in variants" :key="variant.id"
+                                 @mouseover="updateImage(variant.image)" class="color-circle" :style="{backgroundColor: variant.color}">
+
+                            </div>
+                        </div>
+
+                        <div class="cart">Panier ({{ cart }})</div>
+
+                        <!--button class="btn btn-primary" v-on:click="addToCart">Ajouter au Panier</button-->
+                        <button class="btn btn-primary" @click="addToCart">Ajouter au Panier</button>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>
